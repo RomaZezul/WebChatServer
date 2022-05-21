@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
         }
         resp.setContentType("string");
         PrintWriter messageWriter = resp.getWriter();
-        messageWriter.println(s);
+        messageWriter.println(s.trim());
 
     }
 
