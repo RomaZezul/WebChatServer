@@ -19,13 +19,13 @@ public class Login extends HttpServlet {
     private String message;
 
 
-//    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.setContentType("string");
-//        User u = Data.D.setUser("asdd");
-//        PrintWriter messageWriter = response.getWriter();
-//        messageWriter.println( u.toString() );
-//
-// }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("string");
+        User u = Users.us.setUser("asdd");
+        PrintWriter messageWriter = response.getWriter();
+        messageWriter.println( u.toString() );
+
+ }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
