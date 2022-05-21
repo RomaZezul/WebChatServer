@@ -3,15 +3,15 @@ package servlets;
 import classes.User;
 import classes.data.Messages;
 import classes.data.Users;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class MessagesIO extends HttpServlet{
+public class MessagesIO extends HttpServlet {
 
 
     private Messages messages;
