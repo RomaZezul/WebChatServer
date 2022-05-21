@@ -30,7 +30,7 @@ public class MessagesIO extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String mes = req.getParameter("message");
+        String mes = req.getParameter("key");
         messages.addMessage(mes);
 
         resp.setContentType("string");

@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String nick = req.getParameter("nick");
+        String nick = req.getParameter("key");
         User user = Users.us.setUser(nick);
 
         resp.setContentType("string");
