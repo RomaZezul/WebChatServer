@@ -22,7 +22,6 @@ public class UpdateMess extends HttpServlet {
             user.setStatus();
         }
 
-        MessagesIO.messagesIO.messages.addMessage(mes);
         resp.setContentType("string");
         PrintWriter messageWriter = resp.getWriter();
         messageWriter.println(MessagesIO.messagesIO.messages.toString());
