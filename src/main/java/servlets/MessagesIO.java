@@ -52,7 +52,7 @@ public class MessagesIO extends HttpServlet {
         String mes = req.getParameter("key");
         User user = Users.us.getUser( mes);
 
-        if(user == null){
+        if(user != null){
            user.setStatus();
         }else {
             messages.addMessage(mes);
