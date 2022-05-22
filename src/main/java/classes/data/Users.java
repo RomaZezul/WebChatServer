@@ -3,7 +3,9 @@ package classes.data;
 import classes.User;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Users implements Serializable{
@@ -25,6 +27,14 @@ public class Users implements Serializable{
         users.put(user.getKey().trim(), user);
         saveUsers();
         return user;
+    }
+
+    public List<String> getOnlineInfo(){
+        List<String> map = new ArrayList<>();
+        for (User u:users.values()) {
+            map.add(u.getNick()+ "   ->   " +u.isOnLine());
+        }
+        return map;
     }
 
     public String getCounter() {

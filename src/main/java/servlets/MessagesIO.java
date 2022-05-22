@@ -13,17 +13,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
 
 public class MessagesIO extends HttpServlet {
 
-
+    static MessagesIO messagesIO;
     private Messages messages;
+    public Users users;
 
     @Override
     public void init() throws ServletException {
-        new Users(recovery());
+        users = new Users(recovery());
         messages = new Messages();
+        messagesIO = this;
     }
 
     private HashMap<String, User> recovery(){
@@ -40,6 +42,7 @@ public class MessagesIO extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         resp.setContentType("string");
         PrintWriter messageWriter = resp.getWriter();
         messageWriter.println( messages.toString() );
@@ -47,11 +50,17 @@ public class MessagesIO extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String mes = req.getParameter("key");
-        messages.addMessage(mes);
+        User user = Users.us.getUser( mes);
 
-        resp.setContentType("string");
-        PrintWriter messageWriter = resp.getWriter();
-        messageWriter.println(messages.toString());
+        if(user != null){
+           user.setStatus();
+        }else {
+            messages.addMessage(mes);
+            resp.setContentType("string");
+            PrintWriter messageWriter = resp.getWriter();
+            messageWriter.println(messages.toString());
+
+        }
 
     }
 

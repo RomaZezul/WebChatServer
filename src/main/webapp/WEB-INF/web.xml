@@ -18,6 +18,10 @@
     <servlet-name>registration</servlet-name>
     <servlet-class>servlets.Registration</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>isOnline</servlet-name>
+    <servlet-class>servlets.isOnline</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>login</servlet-name>
@@ -32,6 +36,11 @@
   <servlet-mapping>
     <servlet-name>registration</servlet-name>
     <url-pattern>/r</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>isOnline</servlet-name>
+    <url-pattern>/o</url-pattern>
   </servlet-mapping>
 
 </web-app>

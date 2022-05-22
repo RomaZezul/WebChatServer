@@ -8,7 +8,7 @@ public class User  implements Serializable {
     private String nick;
     private boolean onLine;
     private String key;
-    private int count;
+    private transient int count;
     private transient Thread thread;
 
     public String getNick() {
@@ -41,13 +41,16 @@ public class User  implements Serializable {
     public void setStatus() {
         count = 30;
         onLine = true;
-        if (thread.isInterrupted()) {
+        try {
             thread.start();
+        }catch (Exception e){
+
         }
     }
 
-    public boolean isOnLine() {
-        return onLine;
+    public String isOnLine() {
+
+        return onLine?"ONLINE":"DISCONNECT";
     }
 
     @Override
