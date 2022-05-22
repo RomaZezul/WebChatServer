@@ -1,6 +1,5 @@
 package servlets;
 
-import classes.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

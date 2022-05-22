@@ -13,12 +13,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class MessagesIO extends HttpServlet {
 
     static MessagesIO messagesIO;
-    private Messages messages;
+    public Messages messages;
     public Users users;
 
     @Override
@@ -50,17 +49,12 @@ public class MessagesIO extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String mes = req.getParameter("key");
-        User user = Users.us.getUser( mes);
 
-        if(user != null){
-           user.setStatus();
-        }else {
             messages.addMessage(mes);
             resp.setContentType("string");
             PrintWriter messageWriter = resp.getWriter();
             messageWriter.println(messages.toString());
 
-        }
 
     }
 
