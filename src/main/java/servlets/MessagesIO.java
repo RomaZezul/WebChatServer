@@ -8,8 +8,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MessagesIO extends HttpServlet {
 
@@ -18,8 +22,20 @@ public class MessagesIO extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        new Users();
+        new Users(recovery());
         messages = new Messages();
+    }
+
+    private HashMap<String, User> recovery(){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Users.dat")))
+        {
+            return (HashMap<String, User>) ois.readObject();
+        }
+        catch(Exception ex){
+
+            System.out.println(ex.getMessage());
+        }
+        return new HashMap<String, User>();
     }
 
     @Override

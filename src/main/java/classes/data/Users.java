@@ -2,18 +2,18 @@ package classes.data;
 
 import classes.User;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Users {
-    private final Map<String, User> users;
-    private int counter;
-    public static Users us;
+public class Users implements Serializable{
+    private HashMap<String, User> users;
+    private transient int counter;
+    public transient static Users us;
 
-    public Users() {
-        counter = 0;
-        users = new HashMap<String, User>() {
-        };
+    public Users(HashMap<String, User> users) {
+        this.users = users;
+        counter = users.size();
         us = this;
     }
 
@@ -23,6 +23,7 @@ public class Users {
     public User setUser(String n) {
         User user = new User(n);
         users.put(user.getKey().trim(), user);
+        saveUsers();
         return user;
     }
 
@@ -30,4 +31,15 @@ public class Users {
         return String.valueOf(++counter);
     }
 
+    public void saveUsers() {
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Users.dat")))
+        {
+            oos.writeObject(users);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+    }
 }

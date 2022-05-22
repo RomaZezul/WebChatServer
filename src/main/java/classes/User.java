@@ -2,12 +2,14 @@ package classes;
 
 import classes.data.Users;
 
-public class User {
+import java.io.Serializable;
+
+public class User  implements Serializable {
     private String nick;
     private boolean onLine;
     private String key;
     private int count;
-    private Thread thread;
+    private transient Thread thread;
 
     public String getNick() {
         return nick;
