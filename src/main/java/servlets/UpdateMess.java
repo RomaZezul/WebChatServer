@@ -16,16 +16,16 @@ public class UpdateMess extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String mes = req.getParameter("key");
-        User user = Users.us.getUser( mes);
+        String key = req.getParameter("key");
+        User user = Users.us.getUser( key);
         if(user != null){
             user.setStatus();
         }
 
-        resp.setContentType("string");
-        PrintWriter messageWriter = resp.getWriter();
-        messageWriter.println(MessagesIO.messagesIO.messages.toString());
+        resp.setContentType("application/json");
+        resp.getWriter().write(MessagesIO.messagesIO.messages.getMessagesJson());
 
+        System.out.println(MessagesIO.messagesIO.messages.getMessagesJson());
 
     }
 

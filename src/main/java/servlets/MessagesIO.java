@@ -27,33 +27,24 @@ public class MessagesIO extends HttpServlet {
         messagesIO = this;
     }
 
-    private HashMap<String, User> recovery(){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Users.dat")))
-        {
+    private HashMap<String, User> recovery() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Users.dat"))) {
             return (HashMap<String, User>) ois.readObject();
-        }
-        catch(Exception ex){
-
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return new HashMap<String, User>();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.setContentType("string");
-        PrintWriter messageWriter = resp.getWriter();
-        messageWriter.println( messages.toString() );
-    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String mes = req.getParameter("key");
+        String message = req.getParameter("message");
+        String nick = req.getParameter("nick");
 
-            messages.addMessage(mes);
-            resp.setContentType("string");
-            PrintWriter messageWriter = resp.getWriter();
-            messageWriter.println(messages.toString());
+        messages.addMessage(nick, message);
+
+        resp.setContentType("application/json");
+        resp.getWriter().write(MessagesIO.messagesIO.messages.getMessagesJson());
 
 
     }

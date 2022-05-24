@@ -30,17 +30,15 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String key = req.getParameter("key").trim();
+        String key = req.getParameter("key");
         User user = Users.us.getUser( key);
 
-        String s = "";
+        String s = "non";
         if(user != null){
             s = user.getNick();
         }
         resp.setContentType("string");
-        PrintWriter messageWriter = resp.getWriter();
-        messageWriter.println(s.trim());
-
+        resp.getWriter().write(s);
     }
 
 }

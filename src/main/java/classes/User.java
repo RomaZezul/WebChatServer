@@ -1,14 +1,21 @@
 package classes;
 
 import classes.data.Users;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 
 public class User  implements Serializable {
     private String nick;
-    private boolean onLine;
+
+    private transient boolean online;
+    @JsonIgnore
     private String key;
+    @JsonIgnore
     private transient int count;
+
+
+    @JsonIgnore
     private transient Thread thread;
 
     public String getNick() {
@@ -19,38 +26,44 @@ public class User  implements Serializable {
         return key;
     }
 
+    public Boolean getOnline() {
+        return online;
+    }
+
     public User(String nick) {
         this.nick = nick;
         key = Users.us.getCounter() + nick;
+        newThread();
+        setStatus();
+    }
+
+    public void setStatus() {
+        count = 30;
+        online = true;
+        try {
+            if(thread.isInterrupted()||!thread.isAlive())
+            thread.start();
+        }catch (Exception e){
+            online = false;
+            newThread();
+            System.out.println(e.getMessage()+online);
+        }
+    }
+
+    private void newThread(){
         thread = new Thread(() -> {
-            while (onLine)
+            while (online)
                 try {
                     Thread.sleep(1000);
                     count--;
                     if (count <= 0) {
-                        onLine = false;
+                        online = false;
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
         }, "userOnline");
-        setStatus();
-    }
-
-    public void setStatus() {
-        count = 30;
-        onLine = true;
-        try {
-            thread.start();
-        }catch (Exception e){
-
-        }
-    }
-
-    public String isOnLine() {
-
-        return onLine?"ONLINE":"DISCONNECT";
     }
 
     @Override
