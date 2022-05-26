@@ -13,6 +13,8 @@ public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nick = req.getParameter("nick");
+        System.out.println(nick);
+
         User user = Users.us.setUser(nick);
 
         resp.setContentType("string");
