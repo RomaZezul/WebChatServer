@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
         String key = req.getParameter("key");
         User user = Users.us.getUser( key);
 
-        String s = "non";
+        String s = "";
         if(user != null){
             s = user.getNick();
         }
