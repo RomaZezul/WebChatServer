@@ -3,9 +3,7 @@ package classes.data;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Messages {
@@ -46,7 +44,7 @@ public class Messages {
     }
 
 
-    public String getMessagesJson() throws JsonProcessingException {
-        return mapper.writeValueAsString(messages);
+    public byte[] getMessagesJson() throws JsonProcessingException {
+        return mapper.writeValueAsBytes(messages);
     }
 }

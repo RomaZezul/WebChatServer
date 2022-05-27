@@ -44,7 +44,7 @@ public class MessagesIO extends HttpServlet {
         messages.addMessage(nick, message);
 
         resp.setContentType("application/json");
-        resp.getWriter().write(MessagesIO.messagesIO.messages.getMessagesJson());
+        resp.getOutputStream().write(MessagesIO.messagesIO.messages.getMessagesJson());
 
 
     }

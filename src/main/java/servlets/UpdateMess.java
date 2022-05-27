@@ -23,7 +23,7 @@ public class UpdateMess extends HttpServlet {
         }
 
         resp.setContentType("application/json");
-        resp.getWriter().write(MessagesIO.messagesIO.messages.getMessagesJson());
+        resp.getOutputStream().write(MessagesIO.messagesIO.messages.getMessagesJson());
 
         System.out.println(MessagesIO.messagesIO.messages.getMessagesJson());
 
