@@ -26,6 +26,10 @@
     <servlet-name>UpMes</servlet-name>
     <servlet-class>servlets.UpdateMess</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>getVersionAndroid</servlet-name>
+    <servlet-class>servlets.VersionAndroid</servlet-class>
+  </servlet>
 
 
   <servlet-mapping>
@@ -51,6 +55,11 @@
   <servlet-mapping>
     <servlet-name>UpMes</servlet-name>
     <url-pattern>/up</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>getVersionAndroid</servlet-name>
+    <url-pattern>/android</url-pattern>
   </servlet-mapping>
 
 </web-app>
