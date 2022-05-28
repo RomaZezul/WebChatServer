@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 
 public class VersionAndroid extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().write( "https://drive.google.com/file/d/1u6y2B_fUeYKqn_vUsAjsbav8R5m0nJZj/view?usp=sharing" );
+        response.getWriter().write( "https://drive.google.com/file/d/1xrRtGDoyAWplCeOhKRIpMBSUsv5vaNIg/view?usp=sharing" );
 
     }
 
